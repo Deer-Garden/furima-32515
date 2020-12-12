@@ -4,6 +4,7 @@
 ## usersテーブル
 |  Column    |  Type  |  Option    |
 | ---------- | ------ | ---------- |
+| nickname   | string | null:false |
 | first_name | string | null:false |
 | last_name  | string | null:false |
 | password   | string | null:false |
@@ -50,7 +51,6 @@
 
 ### Association
 - belongs_to :item
-- has_one :card
 - has_one :address
 
 # addressesテーブル
@@ -62,17 +62,6 @@
 | city       | string | null:false |
 | street     | string | null:false |
 | phone      | integer| null:false |
-
-### Association
-- belongs_to :order
-
-# cardsテーブル
-
-|   Column   |  Type  |  Option    |
-| ---------- | ------ | ---------- |
-| number     | integer| null:false |
-| date       | string | null:false |
-| code       | integer| null:false |
 
 ### Association
 - belongs_to :order
