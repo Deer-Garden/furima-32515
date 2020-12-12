@@ -2,16 +2,16 @@
 
 
 ## usersテーブル
-|  Column              |  Type  |  Option    |
-| -------------------- | ------ | ---------- |
-| nickname             | string | null:false |
-| first_name           | string | null:false |
-| last_name            | string | null:false |
-| fname                | string | null:false |
-| lname                | string | null:false |
-| encrypted_password   | string | null:false |
-| email                | string | null:false |
-| birthday             | date   | null:false |
+|  Column              |  Type  |  Option                 |
+| -------------------- | ------ | ----------------------- |
+| nickname             | string | null:false              |
+| first_name           | string | null:false              |
+| last_name            | string | null:false              |
+| fname                | string | null:false              |
+| lname                | string | null:false              |
+| encrypted_password   | string | null:false              |
+| email                | string | null:false ,unique: true|
+| birthday             | date   | null:false              |
 
 ### Association
 - has_many :items
@@ -23,7 +23,7 @@
 | ------------- | --------- | ---------------------------- |
 | name          | string    | null:false                   |
 | price         | integer   | null:false                   |
-| explanation   | string    | null:false                   |
+| explanation   | text      | null:false                   |
 | category_id   | integer   | null:false                   |
 | status_id     | integer   | null:false                   |
 | method_id     | integer   | null:false                   |
