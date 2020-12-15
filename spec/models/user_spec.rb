@@ -11,7 +11,7 @@ RSpec.describe User, type: :model do
     end
    
     context '登録できない場合' do
-      it "encryped_passwordが６文字以上であれば登録できる" do
+      it "encryped_passwordが６文字以上であれば登録できない" do
         @user.password = "000000a"
         @user.password_confirmation = "000000a"
         expect(@user).to be_valid
@@ -42,7 +42,7 @@ RSpec.describe User, type: :model do
         expect(another_user.errors.full_messages).to include("Email has already been taken")
       end
 
-      it "メールアドレスは＠を含む必要がある" do
+      it "メールアドレスは＠がないと登録できない" do
         @user.email = "testsample.com"
         @user.valid?
         expect(@user.errors.full_messages).to include("Email is invalid")
@@ -66,7 +66,7 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include("Password confirmation can't be blank")
       end
 
-      it "パスワードと確認用のパスワードの一致が必須であること" do
+      it "パスワードと確認用のパスワードの一致しないと登録できない" do
         @user.password = "123456"
         @user.password_confirmation = "1234567"
         @user.valid?
@@ -126,7 +126,7 @@ RSpec.describe User, type: :model do
         @user.valid?
         expect(@user.errors.full_messages).to  include("Birthday can't be blank")
       end
-      
+
     end 
   end
 end
