@@ -62,20 +62,40 @@ RSpec.describe User, type: :model do
       @user.valid?
       expect(@user.errors.full_messages).to  include("First name can't be blank")
     end
+    it "first_nameに英字が入力されていると登録できない" do
+      @user.first_name = "aaa"
+      @user.valid?
+      expect(@user.errors.full_messages).to include("First name is invalid")
+    end
     it "last_nameが空だと登録できない" do
       @user.last_name = ""
       @user.valid?
       expect(@user.errors.full_messages).to  include("Last name can't be blank")
+    end
+    it "last_nameに英字入力されていると登録できない" do
+      @user.last_name = "aaa"
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Last name is invalid")
     end
     it "fnameが空だと登録できない" do
       @user.fname = ""
       @user.valid?
       expect(@user.errors.full_messages).to  include("Fname can't be blank")
     end
+    it "fnameに英字が入力されていると登録できない" do
+      @user.fname = "aaa"
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Fname is invalid")
+    end
     it "lnameが空だと登録できない" do
       @user.lname = ""
       @user.valid?
       expect(@user.errors.full_messages).to  include("Lname can't be blank")
+    end
+    it "lnameに英字が入力されていると登録できない" do
+      @user.lname = "aaa"
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Lname is invalid")
     end
     it "birthdayが空だと登録できない" do
       @user.birthday = ""
