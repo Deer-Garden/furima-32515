@@ -6,13 +6,16 @@ class User < ApplicationRecord
 
   has_many :items
   has_many :orders
-
-  validates :nickname, presence: true
-  validates :first_name, presence: true, format: {with: /\A[ぁ-んァ-ン一-龥]/ }
-  validates :last_name, presence: true, format: {with: /\A[ぁ-んァ-ン一-龥]/ }
-  validates :fname, presence: true, format: {with: /\A[ァ-ヶー－]+\z/ }
-  validates :lname, presence:true, format: {with: /\A[ァ-ヶー－]+\z/ }
-  validates :email,presence: true,uniqueness: true
-  validates :encrypted_password, presence: true, length: { minimum: 6 }
-  validates :birthday, presence: true
+  with_options presence: true do
+    validates :nickname
+    validates :email,uniqueness: true
+    PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i.freeze
+    validates_format_of :password, with: PASSWORD_REGEX, message: 'には英字と数字の両方を含めて設定してください' 
+    validates :password_confirmation
+    validates :first_name, format: {with: /\A[ぁ-んァ-ン一-龥]/ }
+    validates :last_name, format: {with: /\A[ぁ-んァ-ン一-龥]/ }
+    validates :fname, format: {with: /\A[ァ-ヶー－]+\z/ }
+    validates :lname, format: {with: /\A[ァ-ヶー－]+\z/ }
+    validates :birthday
+  end
 end
