@@ -1,14 +1,17 @@
 class Item < ApplicationRecord
-  extend ActiveHash::Associations::ActiveRecordExtensions
+
   has_many :comments
   has_one :order
   belongs_to :user
+  has_one_attached :image
+
+  extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :category
   belongs_to :status
   belongs_to :ship_method
   belongs_to :area
   belongs_to :ship_date
-  has_one_attached :image
+
 
   with_options presence: true do
 
@@ -20,6 +23,7 @@ class Item < ApplicationRecord
     validates :ship_method_id, numericality: { other_than: 1 }
     validates :area_id, numericality: { other_than: 1 }
     validates :ship_date_id, numericality: { other_than: 1 }
-    validates :user 
+    validates :user_id
   end
+
 end
