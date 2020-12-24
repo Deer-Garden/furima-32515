@@ -46,13 +46,13 @@ RSpec.describe UserOrder, type: :model do
       it '郵便番号にはハイフンがないと保存されない' do
         @user_order.postal_code = "1234567"
         @user_order.valid?
-        expect(@user_order.errors.full_messages).to include("Postal code can't be blank")
+        expect(@user_order.errors.full_messages).to include("Postal code is invalid")
       end
 
       it '電話番号にはハイフンが不要であり、11桁以内であること' do
         @user_order.phone = "123456787654321"
         @user_order.valid?
-        expect(@user_order.errors.full_messages).to include("Phone can't be blank")
+        expect(@user_order.errors.full_messages).to include("Phone is invalid")
       end
     end
 
