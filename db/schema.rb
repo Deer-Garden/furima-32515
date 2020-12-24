@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(version: 2020_12_22_053851) do
     t.string "city", default: ""
     t.string "street", default: ""
     t.string "build", default: ""
+    t.string "phone", null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

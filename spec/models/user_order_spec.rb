@@ -54,30 +54,6 @@ RSpec.describe UserOrder, type: :model do
         @user_order.valid?
         expect(@user_order.errors.full_messages).to include("Phone can't be blank")
       end
-
-      it '' do
-        
-      end
-
-      it '' do
-        
-      end
-
-      it '' do
-        
-      end
-
-      it '' do
-        
-      end
-
-      it '' do
-        
-      end
-
-      it '' do
-        
-      end
     end
 
 
