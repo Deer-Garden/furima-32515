@@ -1,6 +1,6 @@
 class UserOrder
   include ActiveModel::Model
-  attr_accessor  :postal_code, :prefecture, :city, :street, :build, :phone, :token, :user_id
+  attr_accessor  :postal_code, :prefecture, :city, :street, :build, :phone, :token, :order_id, :user_id, :item_id
 
   with_options presence: true do
     validates :postal_code, format: { with: /\A\d{3}[-]\d{4}\z/ }
@@ -12,7 +12,13 @@ class UserOrder
   end
 
   def save
-    Address.create(postal_code: postal_code, prefecture: prefecture, city: city, street: street, build: build, phone: phone, user_id: user_id)
+    # user = User.find(params[:user_id])
+    # order = Order.find(params[:order_id])
+    # item = Item.find(params[:item_id])
+    order = Order.create(user_id: user_id, item_id: item_id)
+    
+    
+    Address.create!(postal_code: postal_code, prefecture: prefecture, city: city, street: street, build: build, phone: phone, order_id: order.id)
   end
 
 end
