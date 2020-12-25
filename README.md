@@ -26,9 +26,9 @@
 | explanation   | text      | null:false                   |
 | category_id   | integer   | null:false                   |
 | status_id     | integer   | null:false                   |
-| method_id     | integer   | null:false                   |
+| ship_method_id| integer   | null:false                   |
 | area_id       | integer   | null:false                   | 
-| date_id       | integer   | null:false                   |
+| ship_date_id  | integer   | null:false                   |
 | user          | reference | null:false, foreign_key:true |
 
 ### Association
@@ -60,11 +60,11 @@
 - has_one :address
 - belongs_to :item
 
-# addressesテーブル
+# addressテーブル
 
 |   Column      |  Type     |  Option                      |
 | ------------- | --------- | ---------------------------- |
-| address       | string    | null:false                   |
+| postal_code   | string    | null:false                   |
 | prefecture_id | integer   | null:false                   |
 | city          | string    | null:false                   |
 | street        | string    | null:false                   |
