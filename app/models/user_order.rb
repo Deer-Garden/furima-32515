@@ -7,18 +7,15 @@ class UserOrder
     validates :prefecture, numericality: { other_than: 0, message: "can't be blank" }
     validates :city
     validates :street
-    # validates :build
     validates :phone, format: { with: /\A\d{10,11}\z/ }
+    validates :user_id
+    validates :item_id
+    # validates :order_id
   end
 
   def save
-    # user = User.find(params[:user_id])
-    # order = Order.find(params[:order_id])
-    # item = Item.find(params[:item_id])
     order = Order.create(user_id: user_id, item_id: item_id)
-    
-    
-    Address.create!(postal_code: postal_code, prefecture: prefecture, city: city, street: street, build: build, phone: phone, order_id: order.id)
+    Address.create(postal_code: postal_code, prefecture: prefecture, city: city, street: street, build: build, phone: phone, order_id: order.id)
   end
 
 end
