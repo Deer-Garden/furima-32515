@@ -10,6 +10,11 @@ RSpec.describe UserOrder, type: :model do
       it 'すべての値が正しく入力されていれば保存できること' do
         expect(@user_order).to be_valid
       end
+
+      it '建物名は入力しなくても保存できる' do
+        @user_order.build = nil
+        expect(@user_order).to be_valid
+      end
     end
 
     context '保存できない場合' do
@@ -53,6 +58,30 @@ RSpec.describe UserOrder, type: :model do
         @user_order.phone = "123456787654321"
         @user_order.valid?
         expect(@user_order.errors.full_messages).to include("Phone is invalid")
+      end
+
+      it '電話番号は数字でないと保存できない' do
+        @user_order.phone = "aaaaaaaaaaaaaa"
+        @user_order.valid?
+        expect(@user_order.errors.full_messages).to include("Phone is invalid")
+      end
+
+      it "tokenが空では登録できないこと" do
+        @user_order.token = nil
+        @user_order.valid?
+        expect(@user_order.errors.full_messages).to include("Token can't be blank")
+      end
+    
+      it 'userが空だと保存できないこと' do
+        @user_order.user_id = nil
+        @user_order.valid?
+        expect(@user_order.errors.full_messages).to include("User can't be blank")
+      end
+    
+      it 'itemが空だと保存できないこと' do
+        @user_order.item_id = nil
+        @user_order.valid?
+        expect(@user_order.errors.full_messages).to include("Item can't be blank")
       end
     end
 

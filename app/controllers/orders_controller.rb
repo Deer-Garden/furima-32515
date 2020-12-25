@@ -8,7 +8,6 @@ class OrdersController < ApplicationController
   end
 
   def create
-    # binding.pry
     @user_order = UserOrder.new(order_params)
     if @user_order.valid?
       Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
